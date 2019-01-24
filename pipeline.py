@@ -35,6 +35,20 @@ experiment=Experiment(ws, experiment_name)
 
 set_diagnostics_collection(send_diagnostics=True)
 
+# create AML compute
+aml_compute_target = "aml-compute"
+try:
+    aml_compute = AmlCompute(ws, aml_compute_target)
+    print("found existing compute target.")
+except:
+    print("creating new compute target")
+    
+    provisioning_config = AmlCompute.provisioning_configuration(vm_size = "STANDARD_D2_V2",
+                                                                idle_seconds_before_scaledown=1800,
+                                                                min_nodes = 0, 
+                                                                max_nodes = 4)    
+    aml_compute = ComputeTarget.create(ws, aml_compute_target, provisioning_config)
+    aml_compute.wait_for_completion(show_output=True, min_node_count=None, timeout_in_minutes=20)
 
 cd = CondaDependencies.create(pip_packages=["azureml-train-automl"]) 
 
@@ -49,7 +63,7 @@ def_data_store = ws.get_default_datastore()
 
 automl_step = PythonScriptStep(name="automl_step",
                                 script_name="automl_step.py", 
-                                compute_target="aml-compute", #, #aml_compute, 
+                                compute_target=aml_compute_target, 
                                 source_directory='.', #project_folder,
                                 allow_reuse=True,
                                 runconfig=amlcompute_run_config)

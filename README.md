@@ -1,20 +1,10 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+## Pre-Requisites
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+- A current installation of Anaconda ([Miniconda](https://conda.io/en/latest/miniconda.html) is sufficient and faster to install).
+- Recommended: A current installation of [VS Code](https://code.visualstudio.com/)
+- A conda environment with all the dependencies. Use the environment configuration file `environment.yml` in the parent directory. 
+  - In VS Code, select `View` in the menu, and select `Integrated Terminal`.
+  - Change directory into `VS_Code`. 
+  - Type: `conda env create -f environment.yml` (execution can take up to a few minutes). *Note:* If you decide to change your conda environment definition, you can update an existing environment by typing: `conda env update -f environment.yml`
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
-
-If you want to learn more about creating good readme files then refer the following [guidelines](https://www.visualstudio.com/en-us/docs/git/create-a-readme). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
